@@ -4,7 +4,9 @@
   "description": "app that gives chefs a professional platform to showcase their work",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "cross-env DB_ENV=testing jest ",
+    "server": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,23 @@
   "bugs": {
     "url": "https://github.com/Sara-DLC/back-end/issues"
   },
-  "homepage": "https://github.com/Sara-DLC/back-end#readme"
+  "homepage": "https://github.com/Sara-DLC/back-end#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.4",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3",
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
 }
