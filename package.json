@@ -1,0 +1,19 @@
+{
+  "name": "chef-portfolio",
+  "version": "1.0.0",
+  "description": "app that gives chefs a professional platform to showcase their work",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sara-DLC/back-end.git"
+  },
+  "author": "Sara De La Cruz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sara-DLC/back-end/issues"
+  },
+  "homepage": "https://github.com/Sara-DLC/back-end#readme"
+}
