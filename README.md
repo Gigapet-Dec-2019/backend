@@ -10,8 +10,13 @@
 
 - Users
 
+
+
 >**API Endpoints**
 
+- Visitors
 - Login
 - Registration
+
+
 
