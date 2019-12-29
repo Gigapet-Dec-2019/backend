@@ -24,7 +24,7 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  let { username, password } = req.body;
+  let { username, password, email } = req.body;
 
   Auth.findBy({ username })
 .first()
@@ -35,8 +35,8 @@ router.post('/login', (req, res) => {
     const tokenData = jwt.verify(token, secrets.jwtSecret)
     console.log(tokenData)
     res.status(200).json({
-        token: token,
         message: `Welcome ${user.username}!`,
+        token: token
     });
     } else {
     res.status(401).json({ message: 'Invalid Credentials' });
@@ -53,7 +53,8 @@ function signToken(user) {
   const payload = {
   id: user.id,
   username: user.username,
-  password: user.password
+  password: user.password,
+  email: user.email
   };
 
   const secret = process.env.JWT_SECRET || 'secret';
