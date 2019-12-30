@@ -12,7 +12,7 @@ server.use(helmet());
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
-server.use('/', visitorRouter);
+server.use('/api/visitors', visitorRouter);
 
 
 module.exports = server;
