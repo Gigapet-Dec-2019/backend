@@ -49,6 +49,10 @@ router.post('/login', (req, res) => {
 });
 
 
+//logout
+
+
+
 function signToken(user) {
   const payload = {
   id: user.id,

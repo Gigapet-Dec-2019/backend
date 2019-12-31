@@ -20,6 +20,13 @@ exports.up = function(knex) {
 .createTable('recipe_ingredients', table => {
     table.increments();
     table
+    .integer('chef_id')
+    .unsigned()
+    .notNullable()
+    .references('id')
+    .inTable('users')
+    .onUpdate('CASCADE');
+    table
     .integer('recipe_id')
     .unsigned()
     .notNullable()

@@ -1,4 +1,4 @@
-const db = require('../database/db.config');
+const db = require('../database/dbConfig');
 
 module.exports = {
     find,
@@ -9,9 +9,10 @@ module.exports = {
     remove
 }
 
-function find () {
-    return db('users').select('id', 'username', 'password','email');
-};
+
+function find(){
+    return db('users')
+}
 
 function findBy(user) {
     return db('users').where(user);
@@ -21,7 +22,7 @@ function findBy(user) {
 function findById (id) {
     return db('users')
     .where('id', id)
-    .first();
+    .first()
 };
 
 function add(newUser) {
@@ -32,17 +33,15 @@ function add(newUser) {
     });
 }
 
-function update(changes, id) {
+function update(id, changes) {
     return db('users')
-    .where({ id })
-    .update(changes)
-    .then(count => {
-    count > 0 ? findById(id) : null
-    });
-};
+    .where('id', id)
+    .update(changes);
+}
+
 
 function remove (id) {
     return db('users')
-    .where({ id })
+    .where('id', id)
     .del();
 };
