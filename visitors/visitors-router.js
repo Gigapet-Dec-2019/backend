@@ -5,7 +5,7 @@ const Visitors = require('./visitors-model');
 
 
 router.get('/', (req, res) => {
-    Visitors.find()
+    Visitors.get()
     .then(visitor => {
     res.json(visitor);
     })

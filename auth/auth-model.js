@@ -19,7 +19,7 @@ function findBy(users) {
 
 function findById (id) {
     return db('users')
-    .where({ id })
+    .where('id', id)
 };
 
 function add(newUser) {
