@@ -2,70 +2,58 @@
 exports.up = function(knex) {
     return knex.schema.createTable('recipes', table => {
     table.increments();
-    table.string('recipe_name', 255);
+    table.string('title', 255);
+    table.string('meal_type', 255);
     table.string('description', 255);
-})
-    .createTable('measurement_qty', table => {
-    table.increments();
-    table.integer('qty_amount');
-})
-.createTable('measurement_units', table => {
-    table.increments();
-    table.string('measurement_description');
+    table.integer('user_id')
 })
 .createTable('ingredients', table => {
     table.increments();
+    table.integer('ingredient_id');
+    table.string('ingredient_qty');
     table.string('ingredient_name');
 })
-.createTable('recipe_ingredients', table => {
+.createTable('instructions', table => {
+    table.increments();
+    table.integer('instructions_id');
+    table.string('step_1');
+    table.string('step_2');
+    table.string('step_3');
+    table.string('step_4');
+    table.string('step_5');
+    table.string('step_6');
+})
+.createTable('join_all', table => {
     table.increments();
     table
-    .integer('chef_id')
+    .integer('users_id')
     .unsigned()
     .notNullable()
     .references('id')
     .inTable('users')
     .onUpdate('CASCADE');
     table
-    .integer('recipe_id')
-    .unsigned()
-    .notNullable()
-    .references('id')
-    .inTable('recipes')
-    .onUpdate('CASCADE')
-    .onDelete('CASCADE');
-    table
-    .integer('measurement_qty_id')
-    .unsigned()
-    .notNullable()
-    .references('id')
-    .inTable('measurement_qty')
-    .onUpdate('CASCADE')
-    .onDelete('CASCADE');
-    table
-    .integer('measurement_id')
-    .unsigned()
-    .notNullable()
-    .references('id')
-    .inTable('measurement_units')
-    .onUpdate('CASCADE')
-    .onDelete('CASCADE');
-    table
-    .integer('ingredient_id')
+    .integer('ingredients_id')
     .unsigned()
     .notNullable()
     .references('id')
     .inTable('ingredients')
     .onUpdate('CASCADE')
-    .onDelete('CASCADE');
+    .onDelete('CASCADE');  
+    table
+    .integer('instructions_id')
+    .unsigned()
+    .notNullable()
+    .references('id')
+    .inTable('instructions')
+    .onUpdate('CASCADE')
+    .onDelete('CASCADE');  
 })
 };
 
 exports.down = function(knex) {
     return knex.schema
-    .dropTableIfExists('recipe_ingredients')
+    .dropTableIfExists('join_all')
     .dropTableIfExists('ingredients')
-    .dropTableIfExists('measurement_units')
-    .dropTableIfExists('measurement_qty')
     .dropTableIfExists('recipes');
 };

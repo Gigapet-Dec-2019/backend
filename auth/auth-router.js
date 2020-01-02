@@ -19,7 +19,8 @@ router.post('/register', (req, res) => {
           res.status(201).json(saved);
     })
     .catch(error => {
-        res.status(500).json({message: "Username/Email already exists"});
+      console.log(error)
+        res.status(500).json({message: 'Username, Email, and password required to register.'});
     });
 });
 
@@ -49,7 +50,19 @@ router.post('/login', (req, res) => {
 });
 
 
-//logout
+router.get('/logout', (req, res)=>{
+  if(req.session){
+    req.session.destroy(error => {
+      if (error){
+        res.status(500).json({ message: 'error logging out'})
+      } else {
+        res.status(200).end()
+      }
+    });
+  } else {
+    res.status(200).json({ message: 'logged out'});
+  }
+});
 
 
 
@@ -57,14 +70,13 @@ function signToken(user) {
   const payload = {
   id: user.id,
   username: user.username,
-  password: user.password,
   email: user.email
   };
 
   const secret = process.env.JWT_SECRET || 'secret';
 
   const options = {
-  expiresIn: '1min',
+  expiresIn: '15d',
   }
 
   return jwt.sign(payload, secrets.jwtSecret, options)
