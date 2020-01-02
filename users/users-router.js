@@ -1,87 +1,58 @@
 const router = require('express').Router();
 
 const Users = require('./users-model');
-const Recipes = require('../visitors/visitors-model')
+const Auth = require('../auth/auth-middleware');
 
-router.get('/', (req, res) => {
-    Recipes.get()
+
+router.get('/', Auth, (req, res) => {
+    Users
+    .find()
+    .then(users => {
+            res.json(users);
+    })
+    .catch(error => res.send(error));
+});
+
+
+router.get('/:id', Auth, (req, res) => {
+    const id = req.params.id
+    Users.findById(id)
     .then(user => {
     res.status(200).json( user);
     })
 .catch(error => {
-    console.log(`error on GET/api/user/recipes`, error);
+    console.log(error);
     res.status(500).json({ errorMessage: "The users information could not be retrieved."})
 })
 });
 
-
-// router.get('/:id',  (req, res) => {
-//     const id = req.params;
-//     Users.findById(id)
-//     .then(recipeById => {
-//         recipeById ? res.status(200).json(recipeById) : res.status(404).json({ message: "This recipe does not exist." });
-//     })
-// .catch(error => {
-//     console.log(error);
-//     res.status(500).json({ error: "The recipe information could not be retrieved." });
-//     });
-// });
-
-//add recipes by user---WORKING!!!
-router.post('/:id', (req, res) => {
-    const id = req.params.id;
-    const { recipe_name, description } = req.body
-    Users.findById(id)
-    .then( recipeId => {
-    !recipeId.length ? Recipes.add({
-        recipe_name: recipe_name, 
-        description: description,
-    }).then( () => {
-    res.status(201).json({ message: req.body});
-    })
-    .catch(error => {
-    console.log(error);
-    res.status(500).json({ message: 'Error creating new recipe post'})
-    }) :
-    res.status(404).json({
-    message: "The recipe with the specified ID does not exist."
-    });
-})
-.catch(error => {
-    console.log(error);
-    res.status(500).json({errorMessage: "The recipe could not be saved." })
-})
-});
-
-
-//Update recipe by user ---WORKING!!!!
-router.put('/:id',  (req, res) => {
+router.put('/:id', Auth, (req, res) => {
     const changes = req.body;
     const id = req.params.id;
-    const { recipe } = id;
-  
-    recipe ? res.status(400).json({ errorMessage: " Please provide recipe name and description." }) :
+    const { user } = id;
 
-    Recipes.update(id, changes)
+    user ? res.status(400).json({ errorMessage: " Please provide all required information" }) :
+
+    Users.update(id, changes)
     .then( update => {
-        update === 0 ? res.status(404).json({ message: "This recipes does not exist." }) : res.status(200).json(changes);
+        update === 0 ? res.status(404).json({ message: "This user does not exist." }) : res.status(200).json(changes);
     })
     .catch(error => {
     console.log(error);
-    res.status(500).json({ error: "There was an error while saving the recipe information" });
+    res.status(500).json({ error: "There was an error while saving the users information" });
 });
 });
 
 
-//delete recipe by user---WORKING!!!
-router.delete('/:id',  (req, res) => {
-    Recipes.remove(req.params.id)
+
+router.delete('/:id', Auth, (req, res) => {
+    Users.remove(req.params.id)
     .then(removed => {
-        removed > 0 ? res.status(200).json({ message: 'recipe successfully deleted' }) : res.status(404).json({ message: "The specified recipe does not exist." });
+        removed > 0 ? res.status(200).json({ message: 'user successfully deleted' }) : res.status(404).json({ message: "The specified user does not exist." });
     })
     .catch(error => {
         console.log(error);
-        res.status(500).json({ error: "The recipe could not be removed" })
+        res.status(500).json({ error: "The user could not be removed" })
     })
 });
 
