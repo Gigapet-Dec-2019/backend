@@ -1,8 +1,5 @@
 
 exports.seed = function(knex) {
- 
-  return knex('instructions').truncate()
-    .then(function () {
       return knex('instructions').insert([
         {id: 1, 
           instructions_id: 1, 
@@ -32,5 +29,4 @@ exports.seed = function(knex) {
           step_5: '',
           step_6: ''},
       ]);
-    });
 };
