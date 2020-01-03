@@ -1,6 +1,6 @@
 
 exports.seed = function(knex) {
-  return knex('users').truncate()
+  return knex('users').del()
     .then(function () {
       return knex('users').insert([
         { username: "user1", password: 'password1', email: "email1@test.com"},
