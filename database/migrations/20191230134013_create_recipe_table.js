@@ -5,7 +5,13 @@ exports.up = function(knex) {
     table.string('title', 255);
     table.string('meal_type', 255);
     table.string('description', 255);
-    table.integer('user_id')
+    table.string('ingredient_qty', 255);
+    table.string('ingredient_name', 255);
+    table.string('step_1', 255);
+    table.string('step_2', 255);
+    table.string('step_3', 255);
+    table.integer('user_id');
+    
 })
 .createTable('ingredients', table => {
     table.increments();
