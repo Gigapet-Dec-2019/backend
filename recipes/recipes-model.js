@@ -7,11 +7,20 @@ module.exports = {
 	add,
 	update,
 	remove,
-	findAllRecipes
+	getUserRecipes
 }
 
 function find() {
-	return db('recipes')
+	return db('recipes as r')
+	.join('users as u', 'u.id', 'r.user_id')
+	.select('u.id','r.title', 'r.meal_type','r.description')
+
+	.join('ingredients as i', 'i.ingredient_id', 'r.user_id')
+	.select('i.ingredient_qty', 'i.ingredient_name')
+
+	.join('instructions as n', 'n.id', 'r.user_id')
+	.select('n.step_1', 'n.step_2','n.step_3')
+	
 }
 
 function findBy(filter){
@@ -19,8 +28,17 @@ function findBy(filter){
 };
 
 function findById(id){
-	return db('recipes')
-	.where('id', id)
+	return db('recipes as r')
+	.join('users as u', 'u.id', 'r.user_id')
+	.select('u.id','r.title', 'r.meal_type','r.description')
+
+	.join('ingredients as i', 'i.ingredient_id', 'r.user_id')
+	.select('i.ingredient_qty', 'i.ingredient_name')
+
+	.join('instructions as n', 'n.id', 'r.user_id')
+	.select('n.step_1', 'n.step_2','n.step_3')
+
+	.where('r.user_id', id)
 	.first()
 }
 
@@ -45,10 +63,16 @@ function remove(id){
 	.del();
 }
 
-function findAllRecipes(id) {
-	return db('users')
-	.join('recipes', 'recipes.id', 'user_id')
-	.select('recipes.*')
-	.where('recipes.id', id);
+function getUserRecipes(userId) {
+	return db('recipes as r')
+	.join('users as u', 'u.id', 'r.user_id')
+	.select('u.id','r.title', 'r.meal_type','r.description')
+
+	.join('ingredients as g', 'g.ingredient_id', 'r.user_id')
+	.select('g.ingredient_qty', 'g.ingredient_name')
+
+	.join('instructions as i', 'i.id', 'r.user_id')
+	.select('i.step_1', 'i.step_2','i.step_3')
+	.where('r.user_id', userId)
+	
 }
-//'recipes.id', 'user_id')
