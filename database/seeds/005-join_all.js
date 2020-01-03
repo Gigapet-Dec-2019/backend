@@ -1,9 +1,5 @@
 
 exports.seed = function(knex) {
-
-  return knex('join_all').truncate()
-    .then(function () {
-     
       return knex('join_all').insert([
         { 
           users_id: 1,
@@ -19,7 +15,5 @@ exports.seed = function(knex) {
               users_id: 3,
               ingredients_id: 3,
               instructions_id: 3 },
-        
       ]);
-    });
 };

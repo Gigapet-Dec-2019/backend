@@ -1,7 +1,5 @@
 
 exports.seed = function(knex) {
-  return knex('recipes').truncate()
-    .then(function () {
       return knex('recipes').insert([
       {  
         user_id: 1,
@@ -9,14 +7,7 @@ exports.seed = function(knex) {
         meal_type:'Dinner', 
         description: 'This quick-and-easy steak skillet entree'
       },
-
-      {
-        user_id: 1,
-        title: 'user 1 recipe test2',
-        meal_type:'Dinner', 
-        description: 'This quick-and-easy steak skillet entree'
-      },
-
+      
       {
         user_id: 2,
         title: 'Low Carb Vegetarian Chile Rellenos Bake', 
@@ -31,5 +22,4 @@ exports.seed = function(knex) {
         description: 'Delicious and easy drink, made with only 3 ingredients: Malibu, pineapple juice and cranberry juice'
       },
       ]);
-    });
 };

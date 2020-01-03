@@ -1,7 +1,5 @@
 
 exports.seed = function(knex) {
-  return knex('ingredients').truncate()
-    .then(function () {
       return knex('ingredients').insert([
         {
           ingredient_id: 1, 
@@ -18,5 +16,4 @@ exports.seed = function(knex) {
           ingredient_qty:"8 oz",
           ingredient_name: 'pineapple juice'},
       ]);
-    });
 };
