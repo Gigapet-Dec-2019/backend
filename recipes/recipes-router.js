@@ -40,22 +40,18 @@ router.get('/:id/recipes',   (req, res) => {
 });
 });
 
-router.post('/:id/recipes', Auth, (req, res) => {
+router.post('/:id', Auth, (req, res) => {
     const id = req.params.id;
-    const { user_id, title, meal_type, description, ingredient_qty, ingredient_name, step_1, step_2, step_3 } = req.body
+    const { title, meal_type, description, ingredient_name, instructions,user_id } = req.body
     Users.findById(id)
     .then( recipe => {
     !recipe.length ? Recipes.add({
-        user_id: user_id,
         title: title, 
         meal_type: meal_type,
         description: description,
-        ingredient_qty: ingredient_qty,
         ingredient_name: ingredient_name,
-        step_1: step_1,
-        step_2: step_2,
-        step_3: step_3
-
+        instructions: instructions,
+        user_id: user_id
     }).then( () => {
     res.status(201).json({ message: req.body});
     })

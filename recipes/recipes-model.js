@@ -16,10 +16,10 @@ function find() {
 	.select('u.id','r.title', 'r.meal_type','r.description')
 
 	.join('ingredients as i', 'i.ingredient_id', 'r.user_id')
-	.select('i.ingredient_qty', 'i.ingredient_name')
+	.select('i.ingredient_name')
 
-	.join('instructions as n', 'n.id', 'r.user_id')
-	.select('n.step_1', 'n.step_2','n.step_3')
+	.join('instructions as n', 'n.instructions_id', 'r.user_id')
+	.select('n.instructions',)
 	
 }
 
@@ -33,18 +33,18 @@ function findById(id){
 	.select('u.id','r.title', 'r.meal_type','r.description')
 
 	.join('ingredients as i', 'i.ingredient_id', 'r.user_id')
-	.select('i.ingredient_qty', 'i.ingredient_name')
+	.select('i.ingredient_name')
 
-	.join('instructions as n', 'n.id', 'r.user_id')
-	.select('n.step_1', 'n.step_2','n.step_3')
+	.join('instructions as n', 'n.instructions_id', 'r.user_id')
+	.select('n.instructions',)
 
-	.where('r.user_id', id)
+	.where('r.id', id)
 	.first()
 }
 
 
 function add(newRecipe) {
-    return db('recipes')
+	return db('recipes')
     .insert(newRecipe)
     .then(ids => {
     return findById(ids[0]);
@@ -52,7 +52,7 @@ function add(newRecipe) {
 }
 
 function update(id, changes) {
-	return db('users')
+	return db('recipes')
 	.where('id', id)
 	.update(changes);
 }
@@ -68,11 +68,11 @@ function getUserRecipes(userId) {
 	.join('users as u', 'u.id', 'r.user_id')
 	.select('u.id','r.title', 'r.meal_type','r.description')
 
-	.join('ingredients as g', 'g.ingredient_id', 'r.user_id')
-	.select('g.ingredient_qty', 'g.ingredient_name')
+	.join('ingredients as i', 'i.ingredient_id', 'r.user_id')
+	.select('i.ingredient_name')
 
-	.join('instructions as i', 'i.id', 'r.user_id')
-	.select('i.step_1', 'i.step_2','i.step_3')
+	.join('instructions as n', 'n.instructions_id', 'r.user_id')
+	.select('n.instructions',)
 	.where('r.user_id', userId)
 	
 }
