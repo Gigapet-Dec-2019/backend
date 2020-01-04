@@ -2,39 +2,17 @@ const db = require('../database/dbConfig');
 
 
 module.exports = {
-    get,
-    findById,
-    add,
-    update,
-    remove,
+    get
     };
 
     function get() {
-    return db('recipes');
-    }
-
-    function findById(id) {
-    return db('recipes')
-    .where('id', id)
-        .first();
-    }
-
-    function add(post) {
-    return db('recipes')
-        .insert(post)
-        .then(ids => {
-        return findById(ids[0]);
-        });
-    }
-
-    function update(id, changes) {
-    return db('recipes')
-    .where('id', id)
-        .update(changes);
-    }
-
-    function remove(id) {
-    return db('recipes')
-        .where('id', id)
-        .del();
+        return db('recipes as r')
+        .join('users as u', 'u.id', 'r.user_id')
+        .select('u.id','r.title', 'r.meal_type','r.description')
+    
+        .join('ingredients as i', 'i.ingredient_id', 'r.user_id')
+        .select('i.ingredient_name')
+    
+        .join('instructions as n', 'n.instructions_id', 'r.user_id')
+        .select('n.instructions',)
     }
