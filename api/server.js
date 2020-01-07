@@ -19,5 +19,9 @@ server.use('/api/auth', authRouter);
 server.use('/api/user', usersRouter);
 server.use('/api/recipes', RecipeRouter);
 
+server.get('/', (req, res) => {
+    res.json({ api: "Up and running!" });
+});
+
 
 module.exports = server;
