@@ -14,6 +14,14 @@ exports.up = function(knex) {
     .string('email', 255)
     .notNullable()
     .unique()
+    table
+    .string('location', 255)
+    table
+    .string('business_phone', 255)
+    .unique()
+    table
+    .string('business_email', 255)
+    .unique()
   })
 };
 
