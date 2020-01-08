@@ -46,9 +46,10 @@ function findById(id){
 function add(newRecipe) {
 	return db('recipes')
     .insert(newRecipe)
-    .then(ids => {
-    return findById(ids[0]);
-    });
+	.then(ids => {
+        const [id] = ids;
+        return findById(id);
+        });
 }
 
 function update(id, changes) {
