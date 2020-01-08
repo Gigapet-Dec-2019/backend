@@ -31,7 +31,7 @@ function add(newUser) {
     .insert(newUser)
     .then(() => {
         return db("users")
-            .where("email", users.email)
+            .where("id", newUser)
             .select(
                 "id",
                 "full_name",

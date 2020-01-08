@@ -114,6 +114,7 @@ Expects an object with this format as the request body:
     header -- "Content-Type: application/json"
     data: 
 {
+    "full_name": "user name", //string
     "username": "user", //string
     "email": "email@test.com", //string
     "password": "password3", //string
