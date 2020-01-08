@@ -29,9 +29,9 @@ function findById (id) {
 function add(newUser) {
     return db('users')
     .insert(newUser)
-    .then(() => {
+    .then(id => {
         return db("users")
-            .where("id", newUser)
+            .where("id", id)
             .select(
                 "id",
                 "full_name",
