@@ -29,10 +29,23 @@ function findById (id) {
 function add(newUser) {
     return db('users')
     .insert(newUser)
-    .then(ids => {
-    return findById(ids[0]);
-    });
+    .then(() => {
+        return db("users")
+            .where("email", users.email)
+            .select(
+                "id",
+                "full_name",
+                "username",
+                "email",
+                "location",
+                "business_phone",
+                "business_email"
+            )
+            .first()
+    })
 }
+
+
 
 function update(id, changes) {
     return db('users')
