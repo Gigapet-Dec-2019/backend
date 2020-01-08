@@ -4,7 +4,7 @@ const Users = require('./users-model');
 const Auth = require('../auth/auth-middleware');
 
 
-router.get('/', Auth, (req, res) => {
+router.get('/', (req, res) => {
     Users
     .find()
     .then(users => {
