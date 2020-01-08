@@ -22,13 +22,24 @@ function findById (id) {
     .where('id', id)
 };
 
-function add(newUser) {
+// function add(newUser) {
+//     return db('users')
+//     .insert(newUser)
+//     .then(ids => {
+//     return findById(ids[0]);
+//     });
+// }
+
+function add(user) {
     return db('users')
-    .insert(newUser)
-    .then(ids => {
-    return findById(ids[0]);
-    });
-}
+        .insert(user, 'id')
+        .then(ids => {
+        const [id] = ids;
+        return findById(id);
+        });
+    }
+
+
 
 function update(changes, id) {
     return db('users')
