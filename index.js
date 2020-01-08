@@ -7,9 +7,7 @@ const server = require('./api/server');
 
 const PORT = process.env.PORT || 5000;
 
-server.use(cors({
-    origin: "https://chef-portfolio-11.firebaseapp.com/",
-}));
+server.use(cors());
 
 
 
