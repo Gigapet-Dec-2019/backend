@@ -22,14 +22,6 @@ function findById (id) {
     .where('id', id)
 };
 
-// function add(newUser) {
-//     return db('users')
-//     .insert(newUser)
-//     .then(ids => {
-//     return findById(ids[0]);
-//     });
-// }
-
 function add(user) {
     return db('users')
         .insert(user, 'id')
