@@ -4,6 +4,9 @@ exports.up = function(knex) {
     table
     .increments();
     table
+    .string('full_name', 255)
+    .notNullable()
+    table
     .string('username', 255)
     .notNullable()
     .unique();

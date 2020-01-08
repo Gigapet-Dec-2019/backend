@@ -24,6 +24,7 @@ To run server: npm start
 | Name     | Type   | Required | Unique | Notes |
 | -------- | ------ | -------- | ------ | ----- |
 | id       | integer| yes      | yes    | User's id |
+| full_name | string | yes      | no    | User's full name |
 | username | string | yes      | yes    | User's username |
 | password | string | yes      | no     | User's hashed password |
 | email    | string | yes      | yes    | User's email |
@@ -113,9 +114,9 @@ Expects an object with this format as the request body:
     header -- "Content-Type: application/json"
     data: 
 {
-"username": "user", //string
+    "username": "user", //string
     "email": "email@test.com", //string
-"password": "password3", //string
+    "password": "password3", //string
     "location": "Austin, TX", //string
     "business_phone": "(304) 456-2323", //string
     "business_email": "business@email.com", //string
