@@ -54,7 +54,7 @@ router.post('/:id', Auth, (req, res) => {
         instructions: instructions,
         user_id: user_id
     }).then( () => {
-    res.status(201).json([{message: req.body}]);
+    res.status(201).json({message: req.body});
     })
     .catch(error => {
         console.log('error from promise in post/:id/recipes', error)

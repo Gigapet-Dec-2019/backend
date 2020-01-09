@@ -39,6 +39,7 @@ function findById(id){
 	.select('n.instructions',)
 
 	.where('r.id', id)
+	.first()
 }
 
 
