@@ -25,7 +25,7 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  let { username, password, email } = req.body;
+  let { username, password } = req.body;
 
   Auth.findBy({ username })
 .first()
@@ -36,6 +36,7 @@ router.post('/login', (req, res) => {
     const tokenData = jwt.verify(token, secrets.jwtSecret)
     console.log(tokenData)
     res.status(200).json({
+        id:user.id,
         message: `Welcome ${user.username}!`,
         token: token
     });
