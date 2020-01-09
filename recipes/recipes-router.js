@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     })
 .catch(error => {
     console.log('error from get/ in recipes', error)
-    res.status(500).json({ errorMessage: "The recipe information could not be retrieved."})
+    res.status(404).json({ errorMessage: "The recipe information could not be retrieved."})
 })
 });
 
