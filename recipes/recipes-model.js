@@ -46,9 +46,14 @@ function add(newRecipe) {
 	return db('recipes')
     .insert(newRecipe)
 	.then(ids => {
-        const [id] = ids;
-        return findById(id);
-        });
+		let id =[];
+		for (i = 0; i < ids.length; i++) {
+			id[i] = ids;
+			return findById(id);
+		}
+        // const [id] = ids;
+        // return findById(id);
+    });
 }
 
 function update(id, changes) {
