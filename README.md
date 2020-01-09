@@ -91,6 +91,8 @@ If successful, it will return a `200` HTTP status and will return a token:
 
 ```
 {
+  "id": 1 //integer
+  "message": "Welcome username"
 "token":  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJoZXJva3UiLCJlbWFpbCI6Imhlcm9rdTEtQ      VtYWlsLmNvbSIsImlhdCI6MTU3ODM3MDM5OCwiZXhwIjoxNTc5NjY2Mzk4fQ.Za1xcMSiGtLvWteb8oX8P4OOdCkTWy1saNtpaSVhR5M"
 
 }
@@ -114,7 +116,7 @@ Expects an object with this format as the request body:
     header -- "Content-Type: application/json"
     data: 
 {
-    "Id": 1, //integer
+   
     "full_name": "user name", //string
     "username": "user", //string
     "email": "email@test.com", //string
