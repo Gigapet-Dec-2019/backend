@@ -9,7 +9,7 @@ describe('register endpoint', () => {
 });
 
 describe('login endpoint', () => {
-    test('it returns correct HTTP status code if no data', async ()=>{
+    test('it returns correct HTTP status code if wrong credentials', async ()=>{
         const response = await request(server).post('/api/auth/login')
         expect(response.status).toBe(500)
     });
