@@ -26,6 +26,7 @@ function findById (id) {
 };
 
 
+
 function add(newUser) {
     return db('users')
     .insert(newUser)

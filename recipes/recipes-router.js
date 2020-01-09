@@ -42,7 +42,8 @@ router.get('/:id/recipes',   (req, res) => {
 
 router.post('/:id', Auth, (req, res) => {
     const id = req.params.id;
-    const { title, meal_type, description, ingredient_name, instructions,user_id } = req.body
+    const {title, meal_type, description, ingredient_name, instructions,user_id } = req.body
+
     Users.findById(id)
     .then( recipe => {
     !recipe.length ? Recipes.add({
@@ -53,7 +54,7 @@ router.post('/:id', Auth, (req, res) => {
         instructions: instructions,
         user_id: user_id
     }).then( () => {
-    res.status(201).json({ message: req.body});
+    res.status(201).json([{message: req.body}]);
     })
     .catch(error => {
         console.log('error from promise in post/:id/recipes', error)
