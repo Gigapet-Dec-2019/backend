@@ -30,7 +30,7 @@ function findBy(filter){
 function findById(id){
 	return db('recipes as r')
 	.join('users as u', 'u.id', 'r.user_id')
-	.select('u.id','r.title', 'r.meal_type','r.description')
+	.select('r.id','r.user_id', 'r.title', 'r.meal_type','r.description')
 
 	.join('ingredients as i', 'i.ingredient_id', 'r.user_id')
 	.select('i.ingredient_name')

@@ -5,7 +5,7 @@ exports.seed = function(knex) {
         title: 'Garlic-Butter Steak',
         meal_type:'Dinner', 
         description: 'This quick-and-easy steak skillet entree',
-        user_id: 1,
+        user_id: 2,
       },
       
       {
