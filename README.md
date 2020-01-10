@@ -70,6 +70,7 @@ Endpoints Content:
 - [Registration](#Registration)
 - [Recipes](#Recipes)
 - [Visitors](#Visitors)
+- [Users](#Users)
 
 
 
@@ -249,6 +250,15 @@ Will return a  of list objects for the specified user:
 https://bw-chef-portfolio.herokuapp.com/api/visitors 
 
 No sign-in or object expected, will return list of all recipes in the database.
+
+## Users
+
+https://bw-chef-portfolio.herokuapp.com/api/user
+
+No sign-in or object expected, will return list of all users in the database. Use this to verify registration is working. Passwords for new users will be hashed.
+
+
+
 
 
 
